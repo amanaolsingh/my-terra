@@ -5,7 +5,7 @@ provider "aws" {
 
 # EC2 Instance Configuration
 resource "aws_instance" "my_instance" {
-  ami           = "ami-0c55b159cbfafe1f0"  # Replace with your desired AMI ID
+  ami           = "ami-0866a3c8686eaeeba"  # Replace with your desired AMI ID
   instance_type = "t2.micro"                # Instance type, adjust as needed
 
   tags = {
