@@ -1,0 +1,35 @@
+name: Terraform CI/CD
+
+on:
+  push:
+    branches:
+      - main  # Trigger on push to the main branch (you can use any branch you prefer)
+  pull_request:
+    branches:
+      - main  # Trigger on pull requests to the main branch (optional)
+
+jobs:
+  terraform:
+    name: Run Terraform
+    runs-on: ubuntu-latest  # You can change this to other GitHub-hosted runners
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Terraform
+      uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: '1.6.0'  # Specify the Terraform version you want to use
+
+    - name: Terraform Init
+      run: terraform init
+
+    - name: Terraform Plan
+      run: terraform plan
+ - name: Terraform Apply
+      run: terraform apply -auto-approve  # Automatically apply the changes without confirmation
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_DEFAULT_REGION: 'us-east-1'  # Specify your desired AWS region
