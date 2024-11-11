@@ -18,9 +18,6 @@ resource "aws_s3_bucket" "my_bucket" {
   bucket = "my-amayush"  # Use a globally unique bucket name
   acl    = "private"      # Bucket ACL, 'private' is a common default
 
-  tags = {
-    Name        = "MyBucket"
-    Environment = "Production"
-  }
+ 
 }
 
